@@ -13,9 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Goop Gaming League",
-  description:
-    "Official website of the Goop Gaming League esports organization",
+  title: "PSL",
+  description: "Official website of PSL",
 };
 
 export default function RootLayout({
