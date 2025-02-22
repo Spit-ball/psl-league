@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PSL",
-  description: "Official website of PSL",
+  title: "Primordial Soccar League",
+  description: "Official website of Primordial Soccar League",
 };
 
 export default function RootLayout({
