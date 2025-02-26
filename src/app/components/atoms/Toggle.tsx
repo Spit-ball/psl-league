@@ -43,7 +43,7 @@ export const Toggle = ({
         onChange={(e) => onChange(e.target.checked)}
         className={`toggle-checkbox absolute block ${handleClasses[size]} rounded-full bg-white border-4 appearance-none cursor-pointer transition-transform duration-200 ease-in-out`}
         style={{
-          transform: checked
+          transform: checked // transform the toggle across the track
             ? `translateX(${
                 size === "sm" ? "1rem" : size === "md" ? "1.25rem" : "1.5rem"
               })`
