@@ -5,6 +5,9 @@ const meta: Meta<typeof Avatar> = {
   title: "LeagueAssets/Atoms/Avatar",
   component: Avatar,
   tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     size: {
       control: "select",

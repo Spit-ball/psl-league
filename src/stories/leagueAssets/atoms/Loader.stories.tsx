@@ -15,6 +15,9 @@ const meta: Meta<typeof Loader> = {
       options: ["light", "dark"],
     },
   },
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export default meta;

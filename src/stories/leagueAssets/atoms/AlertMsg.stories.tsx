@@ -5,6 +5,9 @@ const meta: Meta<typeof AlertMsg> = {
   title: "LeagueAssets/Atoms/AlertMsg",
   component: AlertMsg,
   tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     type: {
       control: "select",

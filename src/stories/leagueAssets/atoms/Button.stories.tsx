@@ -6,6 +6,9 @@ export default {
   title: "LeagueAssets/Atoms/Button",
   component: Button,
   tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     variant: {
       control: {

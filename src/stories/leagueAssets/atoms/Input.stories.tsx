@@ -5,6 +5,9 @@ const meta: Meta<typeof Input> = {
   title: "LeagueAssets/Atoms/Input",
   component: Input,
   tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     inputSize: {
       control: "select",

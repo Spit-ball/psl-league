@@ -6,6 +6,9 @@ const meta: Meta<typeof Toggle> = {
   title: "LeagueAssets/Atoms/Toggle",
   component: Toggle,
   tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     size: {
       control: "select",
