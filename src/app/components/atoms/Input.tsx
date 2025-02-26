@@ -8,7 +8,6 @@ export interface InputProps
 }
 
 export const Input: React.FC<InputProps> = ({
-  children,
   variant = "light",
   inputSize = "md",
   fullWidth = false,

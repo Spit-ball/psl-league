@@ -18,8 +18,6 @@ const meta: Meta<typeof AlertMsg> = {
   },
   decorators: [
     (Story, context) => {
-      // Set background based on mode
-      const background = context.args.mode === "dark" ? "dark" : "light";
       return (
         <div data-mode={context.args.mode}>
           <Story />

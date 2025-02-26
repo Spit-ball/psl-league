@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export interface AvatarProps {
   src: string;
@@ -14,9 +15,9 @@ export const Avatar = ({
   defaultFallback = "",
 }: AvatarProps) => {
   const sizes = {
-    sm: "w-8 h-8",
-    md: "w-12 h-12",
-    lg: "w-16 h-16",
+    sm: 32, // 8 * 4
+    md: 48, // 12 * 4
+    lg: 64, // 16 * 4
   };
 
   const getFallbackInitials = () => {
@@ -24,9 +25,18 @@ export const Avatar = ({
   };
 
   return (
-    <div className={`${sizes[size]} rounded-full overflow-hidden`}>
+    <div
+      className="rounded-full overflow-hidden"
+      style={{ width: sizes[size], height: sizes[size] }}
+    >
       {src ? (
-        <img src={src} alt={alt} className="w-full h-full object-cover" />
+        <Image
+          src={src}
+          alt={alt}
+          width={sizes[size]}
+          height={sizes[size]}
+          className="w-full h-full object-cover"
+        />
       ) : (
         <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-500">
           {getFallbackInitials()}
