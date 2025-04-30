@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Navbar } from "./components/molecules/Navbar";
+import { Sidebar } from "./components/molecules/Sidebar";
+import { Icons } from "./components/atoms/Icons";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -22,9 +25,31 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const navLinks = [
+    { label: "Home", href: "/" },
+    { label: "Stats", href: "/stats" },
+    { label: "Admin", href: "/admin" },
+    { label: "About", href: "/about" },
+    { label: "Login", href: "/login" },
+  ];
+
+  const sidebarItems = [
+    { label: "Dashboard", id: "dashboard", icon: <Icons.Dashboard /> },
+    { label: "Teams", id: "teams", icon: <Icons.Teams /> },
+    { label: "Players", id: "players", icon: <Icons.Players /> },
+    { label: "Matches", id: "matches", icon: <Icons.Matches /> },
+    { label: "Settings", id: "settings", icon: <Icons.Settings /> },
+  ];
+
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className={geistSans.className}>{children}</body>
+      <body className={geistSans.className}>
+        <Navbar links={navLinks} />
+        <div className="flex">
+          <Sidebar items={sidebarItems} />
+          <main className="flex-1 p-4 ml-16 mt-16">{children}</main>
+        </div>
+      </body>
     </html>
   );
 }
