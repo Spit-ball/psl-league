@@ -1,19 +1,19 @@
-export enum Role {
-  ADMIN = "ADMIN",
-  OWNER = "OWNER",
-  MANAGER = "MANAGER",
-  COACH = "COACH",
-  PLAYER = "PLAYER",
-}
+import { Role } from "@prisma/client";
 
 export const Permissions = {
   // Team permissions
   CAN_CREATE_TEAM: (userRole: Role) =>
-    [Role.ADMIN, Role.MANAGER].includes(userRole),
+    [Role.ADMIN, Role.MANAGER]
+      .map((role) => role.toString())
+      .includes(userRole.toString()),
   CAN_EDIT_TEAM: (userRole: Role, isTeamCoach: boolean) =>
-    [Role.ADMIN, Role.MANAGER].includes(userRole) || isTeamCoach,
+    [Role.ADMIN, Role.MANAGER]
+      .map((role) => role.toString())
+      .includes(userRole.toString()) || isTeamCoach,
   CAN_ADD_PLAYERS: (userRole: Role, isTeamCoach: boolean) =>
-    [Role.ADMIN, Role.MANAGER].includes(userRole) || isTeamCoach,
+    [Role.ADMIN, Role.MANAGER]
+      .map((role) => role.toString())
+      .includes(userRole.toString()) || isTeamCoach,
 
   // League permissions
   CAN_CREATE_LEAGUE: (userRole: Role) => userRole === Role.ADMIN,
@@ -22,5 +22,7 @@ export const Permissions = {
 
   // Match permissions
   CAN_CREATE_MATCH: (userRole: Role, isLeagueAdmin: boolean) =>
-    [Role.ADMIN, Role.MANAGER].includes(userRole) || isLeagueAdmin,
+    [Role.ADMIN, Role.MANAGER]
+      .map((role) => role.toString())
+      .includes(userRole.toString()) || isLeagueAdmin,
 };

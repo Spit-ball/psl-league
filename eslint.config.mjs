@@ -11,6 +11,18 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      "@typescript-eslint/no-unused-vars": ["error", {
+        "argsIgnorePattern": "^(_|request|error)$",
+        "varsIgnorePattern": "^(_|SessionProvider|PrismaClient|status)$",
+        "ignoreRestSiblings": true
+      }],
+      "@next/next/no-img-element": "off",
+      "@next/next/no-html-link-for-pages": "error"
+    },
+    files: ["**/*.ts", "**/*.tsx"]
+  }
 ];
 
 export default eslintConfig;
