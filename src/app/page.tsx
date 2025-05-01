@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center gap-4">
-      <h1 className="text-4xl font-bold">
+      <h1 className="text-4xl font-bold justify-center text-center">
         Welcome to Primordial Soccar League
       </h1>
       <div className="w-64">

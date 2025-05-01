@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  PLAYER
+  COACH
+  MANAGER
+  OWNER
+  ADMIN
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  discordId     String?   @unique
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          Role      @default(PLAYER)
+  createdAt     DateTime  @default(now())
+  accounts      Account[]
+  sessions      Session[]
+  teams         Team[]    @relation("PlayerTeams")
+  leaguesAdmin  League[]  @relation("LeagueAdmin")
+  coachedTeam   Team?     @relation("CoachTeam")
+}
+
+model Team {
+  id        String   @id @default(cuid())
+  name      String
+  leagueId  String
+  league    League   @relation(fields: [leagueId], references: [id])
+  players   User[]   @relation("PlayerTeams")
+  coachId   String?  @unique
+  coach     User?    @relation("CoachTeam", fields: [coachId], references: [id])
+  createdAt DateTime @default(now())
+  matchesAsTeamA Match[] @relation("TeamA")
+  matchesAsTeamB Match[] @relation("TeamB")
+}
+
+model League {
+  id        String   @id @default(cuid())
+  name      String
+  adminId   String
+  createdAt DateTime @default(now())
+  admin     User     @relation("LeagueAdmin", fields: [adminId], references: [id])
+  teams     Team[]
+  matches   Match[]
+}
+
+model Match {
+  id         String   @id @default(cuid())
+  date       DateTime
+  teamAId    String
+  teamBId    String
+  teamA      Team     @relation("TeamA", fields: [teamAId], references: [id])
+  teamB      Team     @relation("TeamB", fields: [teamBId], references: [id])
+  leagueId   String
+  league     League   @relation(fields: [leagueId], references: [id])
+  createdAt  DateTime @default(now())
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
