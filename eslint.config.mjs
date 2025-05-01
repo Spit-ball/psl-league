@@ -14,8 +14,8 @@ const eslintConfig = [
   {
     rules: {
       "@typescript-eslint/no-unused-vars": ["error", {
-        "argsIgnorePattern": "^(_|request|error|status)$",
-        "varsIgnorePattern": "^(_|SessionProvider|PrismaClient)$",
+        "argsIgnorePattern": "^(_|request|error)$",
+        "varsIgnorePattern": "^(_|SessionProvider|PrismaClient|status)$",
         "ignoreRestSiblings": true
       }],
       "@next/next/no-img-element": "off",

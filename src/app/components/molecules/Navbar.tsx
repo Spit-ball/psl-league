@@ -15,7 +15,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ links, items }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { data: session, status } = useSession();
+  const { data: session, status: _status } = useSession();
 
   const handleAuthClick = () => {
     if (session) {
