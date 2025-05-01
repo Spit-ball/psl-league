@@ -1,5 +1,5 @@
-import { Permissions } from "../utils/permissions";
-import { prisma } from "../app/lib/prisma";
+import { Permissions } from "../../../utils/permissions";
+import { prisma } from "../../../lib/prisma";
 import { User } from "@prisma/client"; //  TODO: I STILL NEED TO GENERATE CLIENT
 
 export async function addPlayerToTeam(
