@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Avatar } from "../atoms/Avatar";
+import Link from "next/link";
 
 interface NavbarProps {
   links: { label: string; href: string }[];
@@ -37,23 +38,23 @@ export const Navbar: React.FC<NavbarProps> = ({ links, items }) => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 w-1/4">
-            <a href="/" className="text-xl font-bold text-gray-800">
+            <Link href="/" className="text-xl font-bold text-gray-800">
               <span className="md:hidden">PSL</span>
               <span className="hidden md:inline">Primordial Soccar League</span>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center justify-center flex-1 space-x-4">
             <div className="flex space-x-4">
               {navigationLinks.map((link, index) => (
-                <a
+                <Link
                   key={index}
                   href={link.href}
                   className="text-gray-600 hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <button
                 onClick={handleAuthClick}
@@ -148,14 +149,14 @@ export const Navbar: React.FC<NavbarProps> = ({ links, items }) => {
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navigationLinks.map((link, index) => (
-              <a
+              <Link
                 key={index}
                 href={link.href}
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <button
               onClick={() => {

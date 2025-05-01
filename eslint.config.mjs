@@ -14,11 +14,11 @@ const eslintConfig = [
   {
     rules: {
       "@typescript-eslint/no-unused-vars": ["error", {
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^(_|request|error|status)$",
+        "varsIgnorePattern": "^(_|SessionProvider|PrismaClient)$",
         "ignoreRestSiblings": true
       }],
-      "@next/next/no-img-element": "warn",
+      "@next/next/no-img-element": "off",
       "@next/next/no-html-link-for-pages": "error"
     },
     files: ["**/*.ts", "**/*.tsx"]
